@@ -10,7 +10,12 @@ function setIconAndTooltip(tabId, isShopify) {
   }
   
   // Injects the content script into the specified tab
-  function injectContentScript(tabId) {
+  function injectContentScript(tabId, tabUrl) {
+    // Check if the URL is an allowed URL (http or https)
+    if (!/^https?:\/\//.test(tabUrl)) {
+      return;
+    }
+  
     chrome.scripting.executeScript(
       {
         target: { tabId },
@@ -32,6 +37,7 @@ function setIconAndTooltip(tabId, isShopify) {
     );
   }
   
+  
   // Handles the getIsShopify message from the popup
   function getIsShopify(tabId, sendResponse) {
     chrome.tabs.sendMessage(tabId, { action: 'getIsShopify' }, (response) => {
@@ -48,9 +54,9 @@ function setIconAndTooltip(tabId, isShopify) {
   
   chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     if (changeInfo.status === 'complete') {
-      injectContentScript(tabId);
+      injectContentScript(tabId, tab.url);
     }
-  });
+  });  
   
   chrome.tabs.onActivated.addListener(({ tabId }) => {
     injectContentScript(tabId);
