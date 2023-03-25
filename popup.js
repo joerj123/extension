@@ -15,4 +15,15 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       }
     });
   });
-  
+
+// Listen for clicks on buttons
+ 
+document.getElementById('saveButton').addEventListener('click', () => {
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    chrome.runtime.sendMessage({ action: 'saveSite', tabId: tabs[0].id });
+  });
+});
+
+document.getElementById('viewSavedButton').addEventListener('click', () => {
+  chrome.runtime.sendMessage({ action: 'viewSavedSites' });
+});

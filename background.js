@@ -68,3 +68,27 @@ function setIconAndTooltip(tabId, isShopify) {
     }
   });
   
+  // Function to save the current site
+function saveSite(tab) {
+  chrome.storage.sync.get('savedSites', (data) => {
+    const savedSites = data.savedSites || [];
+    savedSites.push({ url: tab.url, title: tab.title });
+    chrome.storage.sync.set({ savedSites }, () => {
+      console.log('Site saved:', tab.url);
+    });
+  });
+}
+
+// Function to open the saved sites page
+function viewSavedSites() {
+  chrome.tabs.create({ url: 'saved_sites.html' });
+}
+
+// Listen for messages from the popup script
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action === 'saveSite') {
+    chrome.tabs.get(request.tabId, saveSite);
+  } else if (request.action === 'viewSavedSites') {
+    viewSavedSites();
+  }
+});
