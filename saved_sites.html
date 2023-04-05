@@ -3,11 +3,45 @@
   <head>
     <style>
       /* Add your styles here */
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .url {
+        max-width: 300px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     </style>
   </head>
   <body>
     <h1>Saved Shopify Sites</h1>
-    <ul id="savedSitesList"></ul>
+    <table id="savedSitesTable">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Domain</th>
+          <th>Link</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <button id="downloadCsvButton">Download CSV</button>
     <script src="saved_sites.js"></script>
   </body>
 </html>
