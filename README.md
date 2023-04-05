@@ -7,6 +7,8 @@ This Chrome extension detects if the current website is built on the Shopify pla
 - Checks for Shopify-based websites
 - Displays a popup message with the detection result
 - Changes the extension icon color based on the detection result
+- Save sites you've visited to a list
+- Download your saved sites as a CSV, including the URL
 
 ## Installation
 
