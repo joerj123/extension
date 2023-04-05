@@ -16,8 +16,9 @@ This Chrome extension detects if the current website is built on the Shopify pla
 
 git clone https://github.com/yourusername/your-repository.git
 
-
 Replace `yourusername` and `your-repository` with your GitHub username and the name of your repository.
+
+Alternatively in the root github folder click 'Code' and then 'Download Zip' before unzipping.
 
 2. Open Google Chrome and navigate to `chrome://extensions/`.
 
